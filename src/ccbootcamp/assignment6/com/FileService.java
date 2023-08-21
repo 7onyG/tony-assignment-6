@@ -24,7 +24,7 @@ public class FileService {
                  .forEach(fields -> {
                      String date = fields[0];
                      String[] parts = date.split("-");
-                     String year = "20" + parts[0]; // Extract year from date
+                     String year = "20" + parts[1]; // Extract year from date
                      String month = parts[1]; // Extract month from date
                      double salesAmount = Double.parseDouble(fields[1]);
 
