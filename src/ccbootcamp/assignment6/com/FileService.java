@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.stream.Stream;
 
 public class FileService {
@@ -34,10 +36,13 @@ public class FileService {
                      monthlySalesByYear.get(year).merge(month, salesAmount, Double::sum);
                  });
 
+            // Sort the totalSalesByYear map in ascending order
+            Map<String, Double> sortedTotalSales = new TreeMap<>(totalSalesByYear);
+
             System.out.println(modelName + " Yearly Sales Report");
             System.out.println("---------------------------");
 
-            totalSalesByYear.forEach((year, totalSales) -> {
+            sortedTotalSales.forEach((year, totalSales) -> {
                 System.out.println(year + " -> $" + totalSales);
             });
 
@@ -52,6 +57,9 @@ public class FileService {
             e.printStackTrace();
         }
     }
+
+        
+    
 
     public static String findBestMonth(Map<String, Map<String, Double>> monthlySalesByYear) {
     	  String bestMonth = "";
